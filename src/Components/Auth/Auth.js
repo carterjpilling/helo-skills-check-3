@@ -18,7 +18,7 @@ class Auth extends Component {
   }
   handleInput = (e) => {
     this.setState({
-      [e.target.name]: e.target.name
+      [e.target.name]: e.target.value
     })
   }
 
@@ -33,16 +33,16 @@ class Auth extends Component {
   }
 
   handleRegister = () => {
-    // const { username, password } = this.state
+    const { username, password } = this.state
     axios
-      .post('/api/auth/register', this.state)
+      .post('/api/auth/register', { username, password })
       .then((res) => {
         this.props.loginUser(res.data)
         this.props.history.push('/dashboard')
       })
-      .catch((err) => {
-        alert(err.message)
-      })
+    // .catch((err) => {
+    //   alert(err.message)
+    // })
   }
 
   render() {
@@ -55,7 +55,6 @@ class Auth extends Component {
             <div className="username-input-box">
               UserName: <input
                 type='username'
-                maxLength='20'
                 name='username'
                 onChange={(e) => {
                   this.handleInput(e)
@@ -65,7 +64,6 @@ class Auth extends Component {
             <div>
               Password: <input
                 type='password'
-                maxLength='20'
                 name='password'
                 onChange={(e) => {
                   this.handleInput(e)

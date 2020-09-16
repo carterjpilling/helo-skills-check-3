@@ -13,6 +13,8 @@ module.exports = {
     const db = req.app.get('db')
     const { id } = req.session.user
 
+    // if(!req.session)
+
     const { title, img, content } = req.body
 
     await db.add_post([id, title, img, content])
