@@ -10,12 +10,12 @@ import logoutLogo from '../../assets/shut_down.png'
 
 
 const Nav = props => {
-  // console.log(props)
+  console.log(props)
   if (props.location.pathname !== '/') {
     return (
       <div className='navbar-container'>
         <nav className='navbar-button-container'>
-          <div className='profile-pic' src={`${props.profile_pic}`}></div>
+          <img className='profile-pic' src={`${props.profile_pic}`} alt={props.profile_pic} />
           <p>{props.username}</p>
           <Link to='/dashboard'><img className='home-logo' src={homeLogo} alt='home_logo' /></Link>
           <Link to='/new'><img className='new-logo' src={newLogo} alt='new_logo' /></Link>
