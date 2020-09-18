@@ -27,10 +27,10 @@ app.post('/api/auth/login', authCtrl.login)
 app.delete('/auth/logout', authCtrl.logout)
 app.get('/auth/user', authCtrl.getUser)
 
-app.get('/api/posts', postCtrl.getPosts)
+app.get('/api/posts/:id', postCtrl.getPosts)
 app.post('/api/posts', postCtrl.addPost)
 app.delete('/api/posts/:post_id', postCtrl.deletePost)
-app.get('/api/posts/:id', postCtrl.getPost)
+app.get('/api/post/:id', postCtrl.getPost)
 
 
 massive({

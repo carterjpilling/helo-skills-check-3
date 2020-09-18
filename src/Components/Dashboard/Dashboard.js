@@ -42,7 +42,7 @@ class Dashboard extends Component {
     const posts = this.state.posts.map(element => {
       // const {content} = element RIGHT
       return (
-        <Link to='/' key={element.id} >
+        <Link to={`/api/posts/${element.id}`} key={element.id} className="zeldalink">
           <div className="individual-post-container" >
             <div >
               {element.content}

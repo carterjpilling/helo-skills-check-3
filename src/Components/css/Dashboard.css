@@ -8,6 +8,12 @@
   height: 100%;
   background: rgb(242, 242, 242);
 }
+
+.zeldalink{
+  text-decoration: none;
+  color: black;
+  
+}
 .dash-nav-container{
   background: white;
   position: absolute;

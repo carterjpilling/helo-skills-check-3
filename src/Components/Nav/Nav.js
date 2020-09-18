@@ -10,7 +10,7 @@ import logoutLogo from '../../assets/shut_down.png'
 
 
 const Nav = props => {
-  console.log(props)
+  // console.log(props)
   if (props.location.pathname !== '/') {
     return (
       <div className='navbar-container'>
