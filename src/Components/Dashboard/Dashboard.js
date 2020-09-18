@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import '../css/Dashboard.css'
+import { withRouter, Link } from 'react-router-dom'
 import Axios from 'axios'
 
 class Dashboard extends Component {
@@ -41,17 +42,19 @@ class Dashboard extends Component {
     const posts = this.state.posts.map(element => {
       // const {content} = element RIGHT
       return (
-        <div className="individual-post-container" key={element.id}>
-          <div >
-            {element.content}
+        <Link to='/' key={element.id} >
+          <div className="individual-post-container" >
+            <div >
+              {element.content}
+            </div>
+            <div>
+              by: {element.author_id}
+              {/* {element.title} */}
+              {/* {element.img} */}
+              <img className="post-pic" src={element.profile_pic} alt={element.author_id} />
+            </div>
           </div>
-          <div>
-            by: {element.author_id}
-            {/* {element.title} */}
-            {/* {element.img} */}
-            <img className="post-pic" src={element.profile_pic} alt={element.author_id} />
-          </div>
-        </div>
+        </Link>
       )
     })
     // const { content } = posts WRONG
@@ -67,12 +70,7 @@ class Dashboard extends Component {
           </div>
         </div>
         <div className='post-container'>
-          {/* <div className='all-post-container'> */}
-
           {posts}
-          {/* </div> */}
-
-
         </div>
       </div>
     )

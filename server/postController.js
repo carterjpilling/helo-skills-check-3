@@ -24,5 +24,13 @@ module.exports = {
   },
   deletePost: async (req, res) => {
 
+  },
+  getPost: async (req, res) => {
+    const db = req.app.get('db')
+    const { id } = req.params
+
+    db.get_post(+id)
+      .then(post => res.status(200).send(post))
+      .catch(err => res.status(500).send(err))
   }
 }
