@@ -1,5 +1,84 @@
 .post-container-page{
-  position: fixed;
-  left: 500px;
+  position: absolute;
+  display: flex ;
+  flex-direction: column;
+  align-items:center;
+  width: 100vw;
+  height: 100%;
+  background-color: rgb(242, 242, 242);
+}
+
+.post-container-box{
+  width: 65%;
+  position: absolute;
+  box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.10);
   top: 40px;
+  height: 50%;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: white;
+}
+
+.post-header{
+  width: 100%;
+  height: 15%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 5px; */
+  margin-bottom: 10px;
+}
+
+.post-profile-pic{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.45);
+  /* display: absolute;
+  right: 0;
+  bottom: 0; */
+} 
+
+.post-header > h1{
+  font-size: 40px;
+  font-weight: 600;
+  font-family: sans-serif;
+  color: #ff9770;
+}
+
+.title-img-container{
+  display: flex;
+  align-items: center;
+  justify-content: baseline;
+  align-items: baseline;
+  /* position: absolute; */
+  /* right:0; */
+}
+.title-img-container > img{
+  margin-left: 10px;
+}
+.title-img-container > p{
+  margin-left: 5px;
+}
+
+.img-content-container{
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: space-between;
+  /* padding: 5px; */
+}
+
+.post-img-container{
+  width: 48%;
+  height: 100%;
+  box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.10)
+}
+
+.post-content-container{
+  width: 48%;
+  height: 100%;
 }
