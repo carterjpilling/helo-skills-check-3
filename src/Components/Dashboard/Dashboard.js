@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import '../css/Dashboard.css'
 import { withRouter, Link } from 'react-router-dom'
+import searchButton from '../../assets/search_button.png'
 import Axios from 'axios'
 
 class Dashboard extends Component {
@@ -61,9 +62,11 @@ class Dashboard extends Component {
     return (
       <div className='dashboard-container'>
         <div className='dash-nav-container'>
-          <input></input>
-          <button>Search</button>
-          <button>Reset</button>
+          <div className='dashboard-search-container'>
+            <input placeholder='Search by Title'></input>
+            <img className='dashboard-search-button' src={searchButton} />
+            <button className='dashboard-reset-button' >Reset</button>
+          </div>
           <div className='myposts-box'>
             My Posts
           <input type="checkbox" />
