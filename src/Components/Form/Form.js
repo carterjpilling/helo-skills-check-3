@@ -14,7 +14,7 @@ class Form extends Component {
   }
 
   handleSubmit() {
-    axios.post(`/api/posts/`, this.state)
+    axios.post(`/api/posts`, this.state)
       .then(res => this.props.history.push('/dashboard'))
   }
   render() {

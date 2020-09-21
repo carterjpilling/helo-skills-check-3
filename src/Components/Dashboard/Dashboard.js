@@ -34,14 +34,17 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    this.getPosts()
+    this.props.isLoggedIn &&
+      this.getPosts()
+
   }
 
 
   //if search is true then send 
   //This means you can provide arguments if you want, if not they will default to state values. 
+  //Dont need id now because its already on the back.
   getPosts = (userPosts = this.state.userPosts, search = this.state.search) => {
-    axios.get(`/api/posts/${this.props.id}?userPosts=${userPosts}&search=${search}`)
+    axios.get(`/api/posts?userPosts=${userPosts}&search=${search}`)
       .then((res) => {
         this.setState({
           posts: res.data
@@ -105,9 +108,5 @@ class Dashboard extends Component {
     )
   }
 }
-function mapStateToProps(state) {
-  return {
-    id: state.id
-  }
-}
-export default connect(mapStateToProps)(Dashboard)
+
+export default Dashboard

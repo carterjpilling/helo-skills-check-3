@@ -24,10 +24,10 @@ app.use(session({
 
 app.post('/api/auth/register', authCtrl.register)
 app.post('/api/auth/login', authCtrl.login)
-app.delete('/auth/logout', authCtrl.logout)
-app.get('/auth/user', authCtrl.getUser)
+app.post('/api/auth/logout', authCtrl.logout)
+app.get('/api/auth/me', authCtrl.getUser)
 
-app.get('/api/posts/:id', postCtrl.getPosts)
+app.get('/api/posts', postCtrl.getPosts)
 app.post('/api/posts', postCtrl.addPost)
 app.delete('/api/posts/:id', postCtrl.deletePost)
 app.get('/api/post/:id', postCtrl.getPost)

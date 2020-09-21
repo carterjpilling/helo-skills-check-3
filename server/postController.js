@@ -9,7 +9,7 @@ module.exports = {
   getPosts: async (req, res) => {
     const db = req.app.get('db')
     const posts = await getAllPosts(db)
-    const { id } = req.params
+    const { id } = req.session.user
     const { search, userPosts } = req.query
 
     if (userPosts === 'true' && search) {
