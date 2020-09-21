@@ -48,7 +48,12 @@ module.exports = {
     res.status(200).send(posts)
   },
   deletePost: async (req, res) => {
+    const db = req.app.get('db')
+    const { id } = req.params
 
+    await db.delete_post([id])
+    const posts = await getAllPosts(db)
+    res.status(200).send(posts)
   },
   getPost: async (req, res) => {
     const db = req.app.get('db')
@@ -57,5 +62,6 @@ module.exports = {
     db.get_post(+id)
       .then(post => res.status(200).send(post))
       .catch(err => res.status(500).send(err))
+
   }
 }

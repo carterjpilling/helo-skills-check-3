@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import '../css/Dashboard.css'
 import { withRouter, Link } from 'react-router-dom'
 import searchButton from '../../assets/search_button.png'
-import Axios from 'axios'
+import axios from 'axios'
+import { connect } from 'react-redux'
 
 class Dashboard extends Component {
   constructor() {
@@ -11,7 +12,8 @@ class Dashboard extends Component {
     this.state = {
       posts: [],
       search: '',
-      loading: true
+      loading: true,
+      userPosts: true
 
     }
   }
@@ -25,21 +27,44 @@ class Dashboard extends Component {
   //   }
   //   this.getPosts()
   // }
-
+  handleInput = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
 
   componentDidMount() {
     this.getPosts()
   }
 
-  getPosts = () => {
-    Axios.get('/api/posts').then((res) => {
-      this.setState({
-        posts: res.data
+
+  //if search is true then send 
+  //This means you can provide arguments if you want, if not they will default to state values. 
+  getPosts = (userPosts = this.state.userPosts, search = this.state.search) => {
+    axios.get(`/api/posts/${this.props.id}?userPosts=${userPosts}&search=${search}`)
+      .then((res) => {
+        this.setState({
+          posts: res.data
+        })
       })
-    })
   }
 
+  toggleUserPosts = () => {
+    this.setState({
+      userPosts: !this.state.userPosts
+    })
+  }
+  //All of this is triggering at the same time. What I did was make arugments for my getPosts and then passed in the 'reset values' of state when calling getPosts below. 
+  resetState = () => {
+    this.setState({
+
+      search: '',
+      userPosts: true
+    })
+    this.getPosts(true, '')
+  }
   render() {
+    const { search } = this.state
     const posts = this.state.posts.map(element => {
       // const {content} = element RIGHT
       return (
@@ -60,16 +85,17 @@ class Dashboard extends Component {
     })
     // const { content } = posts WRONG
     return (
+
       <div className='dashboard-container'>
         <div className='dash-nav-container'>
           <div className='dashboard-search-container'>
-            <input placeholder='Search by Title'></input>
-            <img className='dashboard-search-button' src={searchButton} />
-            <button className='dashboard-reset-button' >Reset</button>
+            <input placeholder='Search by Title' value={search} name='search' onChange={(e) => this.handleInput(e)}></input>
+            <img className='dashboard-search-button' src={searchButton} onClick={() => this.getPosts()} alt='button' />
+            <button className='dashboard-reset-button' onClick={() => this.resetState()}>Reset</button>
           </div>
           <div className='myposts-box'>
             My Posts
-          <input type="checkbox" />
+          <input type="checkbox" onChange={() => this.toggleUserPosts()} checked={this.state.userPosts} />
           </div>
         </div>
         <div className='post-container'>
@@ -79,5 +105,9 @@ class Dashboard extends Component {
     )
   }
 }
-
-export default Dashboard
+function mapStateToProps(state) {
+  return {
+    id: state.id
+  }
+}
+export default connect(mapStateToProps)(Dashboard)

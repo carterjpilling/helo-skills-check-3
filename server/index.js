@@ -29,7 +29,7 @@ app.get('/auth/user', authCtrl.getUser)
 
 app.get('/api/posts/:id', postCtrl.getPosts)
 app.post('/api/posts', postCtrl.addPost)
-app.delete('/api/posts/:post_id', postCtrl.deletePost)
+app.delete('/api/posts/:id', postCtrl.deletePost)
 app.get('/api/post/:id', postCtrl.getPost)
 
 
