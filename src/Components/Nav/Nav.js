@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import homeLogo from '../../assets/home_logo.png'
 import newLogo from '../../assets/new_logo.png'
 import logoutLogo from '../../assets/shut_down.png'
-import { loginUser } from '../../redux/src/reducer'
+import { loginUser, logoutUser } from '../../redux/src/reducer'
 import axios from 'axios'
 
 
@@ -15,9 +15,11 @@ class Nav extends Component {
   constructor() {
     super()
 
+    this.logoutUser = this.logoutUser.bind(this)
   }
 
   componentDidMount() {
+    console.log(this.props)
     axios.get('/api/auth/me')
       .then(res => {
         this.props.loginUser(res.data)
@@ -25,14 +27,16 @@ class Nav extends Component {
       .catch(() => { this.props.history.push('/') })
   }
 
-  logout() {
+  logoutUser() {
     console.log('hit logout')
     axios.post('/api/auth/logout')
+      .then(() => this.props.logoutUser())
+
   }
   // console.log(props)
+
+
   render() {
-
-
     if (this.props.location.pathname !== '/') {
       return (
         <div className='navbar-container'>
@@ -41,7 +45,7 @@ class Nav extends Component {
             <p>{this.props.username}</p>
             <Link to='/dashboard'><img className='home-logo' src={homeLogo} alt='home_logo' /></Link>
             <Link to='/new'><img className='new-logo' src={newLogo} alt='new_logo' /></Link>
-            <Link onClick={this.logout} to='/'><img className='log-out-button' src={logoutLogo} alt='logout_logo' /> </Link>
+            <Link to='/' onClick={this.logoutUser} ><img className='log-out-button' src={logoutLogo} alt='logout_logo' /> </Link>
           </nav>
         </div>
       )
@@ -51,8 +55,8 @@ class Nav extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return state
-}
 
-export default withRouter(connect(mapStateToProps, { loginUser })(Nav))
+const mapStateToProps = (reduxState) => reduxState
+
+
+export default withRouter(connect(mapStateToProps, { loginUser, logoutUser })(Nav))
