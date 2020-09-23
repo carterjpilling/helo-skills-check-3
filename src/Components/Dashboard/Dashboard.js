@@ -19,25 +19,26 @@ class Dashboard extends Component {
   }
 
 
-  // componentDidMount() {
-  //   if (!this.props.isLoggedIn) {
-  //     this.props.getUser().catch((err) => {
-  //       this.props.history.push('/')
-  //     })
-  //   }
-  //   this.getPosts()
-  // }
+  componentDidMount() {
+    if (!this.props.isLoggedIn) {
+      //   this.props.getUser().catch((err) => {
+      //     this.props.history.push('/')
+      //   })
+    }
+    this.getPosts()
+  }
   handleInput = e => {
     this.setState({
       [e.target.name]: e.target.value
     })
   }
 
-  componentDidMount() {
-    this.props.isLoggedIn &&
-      this.getPosts()
+  // componentDidMount() {
+  //   // this.props.isLoggedIn &&
+  //   this.getPosts()
 
-  }
+  // }
+
 
 
   //if search is true then send 

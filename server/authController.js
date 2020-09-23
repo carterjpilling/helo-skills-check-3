@@ -45,6 +45,7 @@ module.exports = {
     res.status(200).send(req.session.user)
   },
   logout: async (req, res) => {
+    console.log('hit logout controllers')
     req.session.destroy()
     return res.sendStatus(200)
   },

@@ -35,7 +35,7 @@ class Post extends Component {
   }
 
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     return (
       <div className="post-container-page">
         <div className='post-container-box'>

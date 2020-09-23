@@ -7,7 +7,7 @@ import homeLogo from '../../assets/home_logo.png'
 import newLogo from '../../assets/new_logo.png'
 import logoutLogo from '../../assets/shut_down.png'
 import { loginUser } from '../../redux/src/reducer'
-import Axios from 'axios'
+import axios from 'axios'
 
 
 
@@ -18,11 +18,16 @@ class Nav extends Component {
   }
 
   componentDidMount() {
-    Axios.get('/api/auth/me')
+    axios.get('/api/auth/me')
       .then(res => {
         this.props.loginUser(res.data)
       })
       .catch(() => { this.props.history.push('/') })
+  }
+
+  logout() {
+    console.log('hit logout')
+    axios.post('/api/auth/logout')
   }
   // console.log(props)
   render() {
@@ -36,7 +41,7 @@ class Nav extends Component {
             <p>{this.props.username}</p>
             <Link to='/dashboard'><img className='home-logo' src={homeLogo} alt='home_logo' /></Link>
             <Link to='/new'><img className='new-logo' src={newLogo} alt='new_logo' /></Link>
-            <Link to='/'><img className='log-out-button' src={logoutLogo} alt='logout_logo' /> </Link>
+            <Link onClick={this.logout} to='/'><img className='log-out-button' src={logoutLogo} alt='logout_logo' /> </Link>
           </nav>
         </div>
       )
