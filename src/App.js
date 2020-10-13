@@ -6,7 +6,7 @@ import Nav from './Components/Nav/Nav'
 
 
 
-
+//Displayed Nav and Routes. Need to take screen shots for later. 
 function App() {
   return (
     <div>
@@ -15,5 +15,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
